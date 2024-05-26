@@ -33,6 +33,7 @@ class TypedData(ABC):
         return hash(self._value)
 
     def hex(self) -> str:
+        """Returns the hex form of the data, 0x-prefixed."""
         return "0x" + self._value.hex()
 
     def _check_type(self: TypedDataLike, other: Any) -> TypedDataLike:
