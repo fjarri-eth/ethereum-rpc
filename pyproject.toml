@@ -31,7 +31,6 @@ docs = [
     "sphinx>=4",
     "furo",
     "setuptools-scm",
-    "enum-tools[sphinx]",
 ]
 lint = [
     "mypy>=1.4",

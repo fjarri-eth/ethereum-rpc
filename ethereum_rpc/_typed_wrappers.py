@@ -75,9 +75,6 @@ class TypedQuantity:
         return f"{self.__class__.__name__}({self._value})"
 
 
-# This is force-documented as :py:class in ``api.rst``
-# because Sphinx cannot resolve typevars correctly.
-# See https://github.com/sphinx-doc/sphinx/issues/9705
 CustomAmount = TypeVar("CustomAmount", bound="Amount")
 """A subclass of :py:class:`Amount`."""
 
@@ -90,6 +87,9 @@ class Amount(TypedQuantity):
     Arithmetic and comparison methods perform strict type checking,
     so different currency objects cannot be compared or added to each other.
     """
+
+    def __init__(self, wei: int):
+        super().__init__(wei)
 
     @classmethod
     def wei(cls: type[CustomAmount], value: int) -> CustomAmount:
@@ -147,9 +147,6 @@ class Amount(TypedQuantity):
         return self._value <= self._check_type(other)._value
 
 
-# This is force-documented as :py:class in ``api.rst``
-# because Sphinx cannot resolve typevars correctly.
-# See https://github.com/sphinx-doc/sphinx/issues/9705
 CustomAddress = TypeVar("CustomAddress", bound="Address")
 """A subclass of :py:class:`Address`."""
 
@@ -173,19 +170,16 @@ class Address(TypedData):
     @cached_property
     def checksum(self) -> str:
         """Retunrs the checksummed hex representation of the address."""
-
         hex_address = self._value.hex()
 
         # Because we can't just keccak the address bytes, right? That would be too obvious.
         # But unfortunately that's what the algorithm is, and we have to follow it.
         address_hash = keccak(hex_address.encode("utf-8")).hex()
 
-        checksum_address = "0x" + "".join(
+        return "0x" + "".join(
             (hex_address[i].upper() if int(address_hash[i], 16) > 7 else hex_address[i])
             for i in range(40)
         )
-
-        return checksum_address
 
     def __str__(self) -> str:
         return self.checksum
