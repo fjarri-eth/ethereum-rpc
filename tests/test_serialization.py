@@ -1,8 +1,8 @@
 import os
 
 import pytest
-from ethereum_rpc._serialization import StructuringError, structure
-from ethereum_rpc._typed_wrappers import Address, Amount
+from compages import StructuringError
+from ethereum_rpc import Address, Amount, structure
 
 
 def test_structure_into_typed_quantity():

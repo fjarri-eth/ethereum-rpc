@@ -86,7 +86,7 @@ class Amount(TypedQuantity):
 
     Can be subclassed to represent specific currencies of different networks (ETH, MATIC etc).
     Arithmetic and comparison methods perform strict type checking,
-    so different currency objects cannot be compared or added to each other.
+    so currency objects of different types cannot be compared or added to each other.
     """
 
     def __init__(self, wei: int):
@@ -153,7 +153,13 @@ CustomAddress = TypeVar("CustomAddress", bound="Address")
 
 
 class Address(TypedData):
-    """Represents an Ethereum address."""
+    """
+    Represents an Ethereum address.
+
+    Can be subclassed to represent specific addresses of different networks.
+    Comparison methods perform strict type checking,
+    so objects of different types cannot be compared to each other.
+    """
 
     def _length(self) -> int:
         return 20

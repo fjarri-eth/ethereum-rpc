@@ -1,8 +1,7 @@
 import os
 
 import pytest
-from ethereum_rpc._rpc import BlockHash, LogTopic, TxHash
-from ethereum_rpc._typed_wrappers import Address, Amount
+from ethereum_rpc import Address, Amount, TxHash
 
 
 def test_amount():
@@ -113,12 +112,3 @@ def test_typed_data():
     tx_hash = TxHash(data)
     assert repr(tx_hash) == f'TxHash(bytes.fromhex("{data.hex()}"))'
     assert tx_hash.hex() == "0x" + data.hex()
-
-
-def test_typed_data_lengths():
-    # Just try to create the corresponding types,
-    # it will cover their respective length methods.
-    # Everything else is in the base class which is tested elsewhere
-    TxHash(os.urandom(32))
-    BlockHash(os.urandom(32))
-    LogTopic(os.urandom(32))
