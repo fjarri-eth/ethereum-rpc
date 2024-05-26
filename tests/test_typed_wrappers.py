@@ -1,7 +1,6 @@
 import os
 
 import pytest
-
 from ethereum_rpc._rpc import BlockHash, LogTopic, TxHash
 from ethereum_rpc._typed_wrappers import Address, Amount
 

@@ -11,4 +11,5 @@ from Crypto.Hash import keccak as pycryptodome_keccak
 
 
 def keccak(data: bytes) -> bytes:
+    """Calculates Keccak-256 hash of the given data."""
     return pycryptodome_keccak.new(data=data, digest_bits=256).digest()

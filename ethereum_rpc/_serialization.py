@@ -31,7 +31,6 @@ from compages import (
 from ._rpc import BlockLabel, ErrorCode, Type2Transaction
 from ._typed_wrappers import Address, TypedData, TypedQuantity
 
-# TODO: the doc entry had to be written manually for this type because of Sphinx limitations.
 JSON = None | bool | int | float | str | Sequence["JSON"] | Mapping[str, "JSON"]
 """Values serializable to JSON."""
 
