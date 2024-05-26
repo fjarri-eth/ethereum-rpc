@@ -13,6 +13,7 @@ def test_amount():
     assert Amount.wei(val).as_ether() == val / 10**18
     assert Amount.gwei(val).as_wei() == val * 10**9
     assert Amount.ether(val).as_wei() == val * 10**18
+    assert int(Amount.wei(val)) == val
 
     with pytest.raises(TypeError, match="Amount must be an integer, got float"):
         Amount.wei(100.0)
@@ -111,6 +112,7 @@ def test_typed_data():
     data = os.urandom(32)
     tx_hash = TxHash(data)
     assert repr(tx_hash) == f'TxHash(bytes.fromhex("{data.hex()}"))'
+    assert tx_hash.hex() == "0x" + data.hex()
 
 
 def test_typed_data_lengths():
