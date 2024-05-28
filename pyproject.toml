@@ -68,6 +68,9 @@ line-length = 100
 # Don't suggest fixes not compatible with the specified target-version of Python
 keep-runtime-typing = true
 
+[tool.ruff.lint.isort]
+known-first-party = ["ethereum_rpc"]
+
 [tool.ruff.lint]
 select = ["ALL"]
 ignore = [

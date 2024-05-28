@@ -1,6 +1,7 @@
 import os
 
 import pytest
+
 from ethereum_rpc import Address, Amount, TxHash
 
 

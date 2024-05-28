@@ -2,6 +2,7 @@ import os
 
 import pytest
 from compages import StructuringError
+
 from ethereum_rpc import Address, Amount, structure
 
 
