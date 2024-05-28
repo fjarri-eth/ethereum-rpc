@@ -30,6 +30,7 @@ from ._serialization import (
     unstructure,
 )
 from ._typed_wrappers import Address, Amount
+from ._vm import EVMVersion
 
 __all__ = [
     "keccak",
@@ -59,4 +60,5 @@ __all__ = [
     "unstructure",
     "Address",
     "Amount",
+    "EVMVersion",
 ]
