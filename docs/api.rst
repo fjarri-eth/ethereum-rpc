@@ -82,13 +82,6 @@ Outputs
    :members:
 
 
-EVM
----
-
-.. autoclass:: EVMVersion
-   :members:
-
-
 RPC errors
 ----------
 
