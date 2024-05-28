@@ -13,5 +13,5 @@ For more information see [the documentation](https://ethereum-rpc.readthedocs.io
 [pypi-license-image]: https://img.shields.io/pypi/l/ethereum-rpc
 [rtd-image]: https://readthedocs.org/projects/ethereum-rpc/badge/?version=latest
 [rtd-link]: https://ethereum-rpc.readthedocs.io/en/latest/
-[cov-image]: https://codecov.io/gh/fjarri/ethereum-rpc/branch/master/graph/badge.svg?token=RZP1LK1HB2
-[cov-link]: https://codecov.io/gh/fjarri/ethereum-rpc
+[cov-image]: https://codecov.io/gh/tiny-eth/ethereum-rpc/branch/master/graph/badge.svg?token=RZP1LK1HB2
+[cov-link]: https://codecov.io/gh/tiny-eth/ethereum-rpc
