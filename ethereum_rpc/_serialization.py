@@ -169,11 +169,17 @@ _T = TypeVar("_T")
 
 
 def structure(structure_into: type[_T], obj: JSON) -> _T:
-    """Structures incoming JSON data."""
+    """
+    Structures incoming JSON data into the given Ethereum RPC type.
+    Raises :py:class:`compages.StructuringError` on failure.
+    """
     return STRUCTURER.structure_into(structure_into, obj)
 
 
 def unstructure(obj: Any, unstructure_as: Any = None) -> JSON:
-    """Unstructures data into JSON-serializable values."""
+    """
+    Unstructures a given Ethereum RPC entity into a JSON-serializable value.
+    Raises :py:class:`compages.UntructuringError` on failure.
+    """
     # The result is `JSON` by virtue of the hooks we defined
     return cast(JSON, UNSTRUCTURER.unstructure_as(unstructure_as or type(obj), obj))
