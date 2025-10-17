@@ -391,7 +391,6 @@ class RPCError(Exception):
 class Type2Transaction:
     """An EIP-1559 (dynamic fee) transaction."""
 
-    # "type": 2
     chain_id: int
     """Chain ID."""
 
@@ -399,6 +398,38 @@ class Type2Transaction:
     """Associated funds."""
 
     gas: int
+    """Gas limit for the transaction."""
+
+    max_fee_per_gas: Amount
+    """Maximum total fee the sender is willing to pay."""
+
+    max_priority_fee_per_gas: Amount
+    """Maximum miner fee (in addition to the base fee) the sender is willing to pay."""
+
+    nonce: int
+    """The transaction nonce."""
+
+    to: None | Address = None
+    """The destination of the transaction. ``None`` if it's a deployment transaction."""
+
+    data: None | bytes = None
+    """The associated data of the transaction."""
+
+
+@dataclass
+class Type4Transaction:
+    """An EIP-7702 (externally owned account) transaction."""
+
+    chain_id: int
+    """Chain ID."""
+
+    value: Amount
+    """Associated funds."""
+
+    gas: int
+    """Gas limit for the transaction."""
+
+    gas_limit: int
     """Gas limit for the transaction."""
 
     max_fee_per_gas: Amount
