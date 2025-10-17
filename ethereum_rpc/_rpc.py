@@ -316,7 +316,13 @@ class BlockInfo:
 
 
 class RPCErrorCode(Enum):
-    """Known RPC error codes returned by providers."""
+    """Standard RPC error codes returned by providers."""
+
+    PARSE_ERROR = -32700
+    """
+    Invalid JSON was received by the server.
+    An error occurred on the server while parsing the JSON text.
+    """
 
     SERVER_ERROR = -32000
     """Reserved for implementation-defined server-errors. See the message for details."""
@@ -329,6 +335,9 @@ class RPCErrorCode(Enum):
 
     INVALID_PARAMETER = -32602
     """Invalid method parameter(s)."""
+
+    INTERNAL_ERROR = -32603
+    """Internal JSON-RPC error."""
 
     EXECUTION_ERROR = 3
     """Contract transaction failed during execution. See the data for details."""
