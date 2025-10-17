@@ -32,7 +32,9 @@ from ._serialization import (
 from ._typed_wrappers import Address, Amount
 
 __all__ = [
-    "keccak",
+    "JSON",
+    "Address",
+    "Amount",
     "Block",
     "BlockHash",
     "BlockInfo",
@@ -44,8 +46,8 @@ __all__ = [
     "FilterParams",
     "FilterParamsEIP234",
     "LogEntry",
-    "LogsBloom",
     "LogTopic",
+    "LogsBloom",
     "RPCError",
     "RPCErrorCode",
     "TrieHash",
@@ -54,9 +56,7 @@ __all__ = [
     "TxReceipt",
     "Type2Transaction",
     "UnclesHash",
-    "JSON",
+    "keccak",
     "structure",
     "unstructure",
-    "Address",
-    "Amount",
 ]

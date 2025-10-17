@@ -37,9 +37,9 @@ class TypedData(ABC):
         return "0x" + self._value.hex()
 
     def _check_type(self: TypedDataLike, other: Any) -> TypedDataLike:
-        if type(self) != type(other):
+        if type(self) is not type(other):
             raise TypeError(f"Incompatible types: {type(self).__name__} and {type(other).__name__}")
-        return cast(TypedDataLike, other)
+        return cast("TypedDataLike", other)
 
     def __eq__(self, other: object) -> bool:
         return self._value == self._check_type(other)._value
@@ -65,9 +65,9 @@ class TypedQuantity:
         return self._value
 
     def _check_type(self: TypedQuantityLike, other: Any) -> TypedQuantityLike:
-        if type(self) != type(other):
+        if type(self) is not type(other):
             raise TypeError(f"Incompatible types: {type(self).__name__} and {type(other).__name__}")
-        return cast(TypedQuantityLike, other)
+        return cast("TypedQuantityLike", other)
 
     def __eq__(self, other: object) -> bool:
         return self._value == self._check_type(other)._value
@@ -170,9 +170,7 @@ class Address(TypedData):
         Creates the address from a hex representation
         (with or without the ``0x`` prefix, checksummed or not).
         """
-        if address_str.startswith("0x"):
-            address_str = address_str[2:]
-        return cls(bytes.fromhex(address_str))
+        return cls(bytes.fromhex(address_str.removeprefix("0x")))
 
     @cached_property
     def checksum(self) -> str:

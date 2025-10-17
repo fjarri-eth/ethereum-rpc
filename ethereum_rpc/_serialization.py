@@ -120,8 +120,7 @@ def _unstructure_bytes_to_hex(obj: bytes) -> str:
 
 
 def _to_camel_case(name: str, _metadata: MappingProxyType[Any, Any]) -> str:
-    if name.endswith("_"):
-        name = name[:-1]
+    name = name.removesuffix("_")
     parts = name.split("_")
     return parts[0] + "".join(part.capitalize() for part in parts[1:])
 
@@ -184,4 +183,4 @@ def unstructure(obj: Any, unstructure_as: Any = None) -> JSON:
     Raises :py:class:`compages.UntructuringError` on failure.
     """
     # The result is `JSON` by virtue of the hooks we defined
-    return cast(JSON, UNSTRUCTURER.unstructure_as(unstructure_as or type(obj), obj))
+    return cast("JSON", UNSTRUCTURER.unstructure_as(unstructure_as or type(obj), obj))
