@@ -80,7 +80,9 @@ def _structure_into_int(val: Any) -> int:
 
 
 def _unstructure_type2tx(
-    unstructurer: Unstructurer, _unstructure_as: type[Type2Transaction], obj: Type2Transaction
+    unstructurer: Unstructurer,
+    _unstructure_as: type[Type2Transaction],
+    obj: Type2Transaction,
 ) -> Generator[Type2Transaction, dict[str, JSON], JSON]:
     json = yield obj
     json["type"] = unstructurer.unstructure_as(int, 2)

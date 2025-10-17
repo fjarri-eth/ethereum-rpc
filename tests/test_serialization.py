@@ -33,6 +33,7 @@ def test_structure_into_typed_data():
 
     # The error text is weird
     with pytest.raises(
-        StructuringError, match=r"non-hexadecimal number found in fromhex\(\) arg at position 0"
+        StructuringError,
+        match=r"non-hexadecimal number found in fromhex\(\) arg at position 0",
     ):
         structure(Address, "0xzz")
