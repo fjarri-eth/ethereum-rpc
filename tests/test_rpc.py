@@ -218,4 +218,4 @@ def test_rpc_error():
 
     error = RPCError.with_code(RPCErrorCode.INVALID_REQUEST, "message")
     assert error.parsed_code == RPCErrorCode.INVALID_REQUEST
-    assert str(error) == "RPC error -32600: message"
+    assert str(error) == "RPC error (RPCErrorCode.INVALID_REQUEST): message"
