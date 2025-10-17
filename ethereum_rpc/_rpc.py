@@ -350,8 +350,11 @@ ErrorCode = NewType("ErrorCode", int)
 @dataclass
 class RPCError(Exception):
     """
-    An exception raised in case of a known error, that is something that would be returned as
-    ``"error": {"code": ..., "message": ..., "data": ...}`` sub-dictionary in an RPC response.
+    A general problem with fulfilling the request at the provider's side.
+
+    This means the provider sent a correct response with an error code
+    and possibly some associated data
+    (``"error": {"code": ..., "message": ..., "data": ...}`` sub-dictionary in the RPC response).
     """
 
     code: ErrorCode
@@ -361,7 +364,7 @@ class RPCError(Exception):
     """The associated message."""
 
     data: None | bytes = None
-    """The associated hex-encoded data (if any)."""
+    """The associated data (if any)."""
 
     @property
     def parsed_code(self) -> None | RPCErrorCode:
@@ -372,7 +375,11 @@ class RPCError(Exception):
             return None
 
     def __str__(self) -> str:
-        return f"RPC error {self.code}: {self.message}" + (f" ({self.data!r})" if self.data else "")
+        # Substitute the known code if any, or report the raw integer value otherwise
+        code = self.parsed_code or self.code
+        return f"RPC error ({code}): {self.message}" + (
+            f" (data: {self.data.hex()})" if self.data else ""
+        )
 
     @classmethod
     def with_code(cls, code: RPCErrorCode, message: str, data: None | bytes = None) -> "RPCError":
