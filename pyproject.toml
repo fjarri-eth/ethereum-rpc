@@ -1,6 +1,6 @@
 [project]
 name = "ethereum-rpc"
-version = "0.2.0-dev"
+version = "0.2.0"
 description = "Ethereum RPC types"
 authors = [
     {name = "Bogdan Opanchuk", email = "bogdan@opanchuk.net"},
