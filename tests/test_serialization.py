@@ -3,7 +3,14 @@ import os
 import pytest
 from compages import StructuringError
 
-from ethereum_rpc import Address, Amount, BlockLabel, Type2Transaction, structure, unstructure
+from ethereum_rpc import (
+    Address,
+    Amount,
+    BlockLabel,
+    Type2Transaction,
+    structure,
+    unstructure,
+)
 from ethereum_rpc._serialization import TypedData
 
 
@@ -98,3 +105,14 @@ def test_structure_type_2_tx():
 
     assert unstructure(tx) == tx_json
     assert structure(Type2Transaction, tx_json) == tx
+
+    with pytest.raises(StructuringError, match="Transaction must be a mapping type"):
+        structure(Type2Transaction, [])
+
+    tx_json["type"] = "0x3"
+    with pytest.raises(StructuringError, match="Expected transaction type 2, got 3"):
+        structure(Type2Transaction, tx_json)
+
+    del tx_json["type"]
+    with pytest.raises(StructuringError, match="Transaction is missing the `type` field"):
+        structure(Type2Transaction, tx_json)
